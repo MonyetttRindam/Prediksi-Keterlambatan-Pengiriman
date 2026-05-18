@@ -186,10 +186,3 @@ The final Gradient Boosting model achieved a strong Kaggle submission score usin
 * Cross-validation optimization
 * Model deployment with Streamlit
 * Advanced feature importance analysis
-
----
-
-# 📬 Contact
-
-* GitHub: https://github.com/yourusername
-* LinkedIn: https://linkedin.com/in/yourusername
