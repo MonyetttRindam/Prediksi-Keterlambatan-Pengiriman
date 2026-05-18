@@ -1,129 +1,195 @@
-Prediksi Ketepatan Waktu Pengiriman 📦
+# 📦 Shipping Delivery Time Prediction
 
-Proyek machine learning untuk memprediksi apakah suatu pengiriman akan sampai tepat waktu atau terlambat berdasarkan data transaksi pelanggan dan logistik. Dataset berasal dari kompetisi berbasis file train.csv dan test.csv.
+Machine learning project to predict whether a shipment will arrive on time or be delayed using customer transaction and logistics data.
 
-👨‍💻 Author
+---
 
-Muhammad Abil Khoiri
-Mahasiswa Teknik Komputer – Fokus pada AI & Data Science
+## 👨‍💻 Author
 
-📌 Project Overview
+**Muhammad Abil Khoiri**
+Computer Engineering Student | AI & Data Science Enthusiast
 
-Proyek ini bertujuan membangun model klasifikasi untuk memprediksi ketepatan waktu pengiriman menggunakan berbagai fitur transaksi dan logistik pelanggan. Beberapa tahapan utama yang dilakukan meliputi:
+---
 
-Exploratory Data Analysis (EDA)
-Data Preprocessing
-Feature Engineering
-Feature Selection
-Model Training & Evaluation
-Kaggle Submission
-📂 Dataset Features
+# 📌 Project Overview
 
-Dataset terdiri dari berbagai fitur seperti:
+This project aims to build a classification model for predicting shipping delivery timeliness based on customer transactions and logistics information. The workflow includes:
 
-blok_gudang
-mode_pengiriman
-panggilan_layanan_pelanggan
-rating_pelanggan
-harga_produk
-pembelian_sebelumnya
-kepentingan_produk
-jenis_kelamin
-diskon_ditawarkan
-berat_dalam_gram
-🎯 Target
-pengiriman_tepat_waktu
-0 = Terlambat
-1 = Tepat Waktu
-⚙️ Workflow Project
-1️⃣ Exploratory Data Analysis (EDA)
+* Exploratory Data Analysis (EDA)
+* Data Preprocessing
+* Feature Engineering
+* Feature Selection
+* Model Training & Evaluation
+* Kaggle Submission
 
-Dilakukan analisis distribusi data, korelasi antar fitur, dan identifikasi pola penting.
+---
 
-Insight Penting
-diskon_ditawarkan memiliki korelasi positif terhadap target.
-berat_dalam_gram memiliki korelasi negatif sedang terhadap target.
-Beberapa fitur seperti jenis_kelamin dan blok_gudang tidak memiliki korelasi signifikan.
-2️⃣ Data Preprocessing
-🔤 Encoding
+# 📂 Dataset Features
 
-Menggunakan Label Encoding pada fitur kategorikal:
+The dataset contains several logistics and transaction-related features:
 
-blok_gudang
-mode_pengiriman
-kepentingan_produk
-jenis_kelamin
-🩹 Handling Missing Values
-Median Imputation → fitur numerik
-Mode Imputation → fitur kategorikal
-📉 Outlier Handling
+| Feature                       | Description                      |
+| ----------------------------- | -------------------------------- |
+| `blok_gudang`                 | Warehouse block location         |
+| `mode_pengiriman`             | Shipping method used             |
+| `panggilan_layanan_pelanggan` | Number of customer service calls |
+| `rating_pelanggan`            | Customer rating                  |
+| `harga_produk`                | Product price                    |
+| `pembelian_sebelumnya`        | Previous purchases               |
+| `kepentingan_produk`          | Product importance               |
+| `jenis_kelamin`               | Customer gender                  |
+| `diskon_ditawarkan`           | Discount offered                 |
+| `berat_dalam_gram`            | Product weight in grams          |
 
-Menggunakan:
+### 🎯 Target Variable
 
-log1p transformation
-IQR-based capping
-📏 Feature Scaling
+| Value | Meaning |
+| ----- | ------- |
+| `0`   | Delayed |
+| `1`   | On Time |
 
-Menggunakan:
+---
 
-StandardScaler
-3️⃣ Feature Engineering
+# ⚙️ Project Workflow
 
-Beberapa fitur baru yang dibuat:
+## 1️⃣ Exploratory Data Analysis (EDA)
 
-Feature	Deskripsi
-harga_setelah_diskon	Harga akhir setelah diskon
-berat_per_diskon	Rasio berat produk terhadap diskon
-produk_ringan	Produk dengan berat < 1000 gram
-diskon_tinggi	Diskon lebih dari 50%
-skor_pelanggan	Rating - customer service calls
-high_value_order	Order bernilai tinggi dan penting
-is_frequent_buyer	Pelanggan loyal
-produk_penting_dan_ringan	Kombinasi produk penting & ringan
-customer_loyalty	Skor loyalitas pelanggan
-🤖 Models Used
+Performed data exploration to analyze:
 
-Beberapa model machine learning yang diuji:
+* Feature distributions
+* Correlation matrix
+* Missing values
+* Outliers
+* Data skewness
 
-Logistic Regression
-Random Forest
-XGBoost
-Gradient Boosting
-📊 Model Evaluation
-🔹 Gradient Boosting (Best Model)
-Metric	Score
-Accuracy	66.78%
-Precision	70.11%
-Recall	90.09%
-F1-Score	78.85%
-AUC	72.71%
-📌 Why Gradient Boosting?
+### 📊 Key Insights
 
-Gradient Boosting memberikan performa terbaik secara keseluruhan dengan:
+* `diskon_ditawarkan` showed moderate positive correlation with delivery timeliness.
+* `berat_dalam_gram` showed moderate negative correlation.
+* Features such as `jenis_kelamin` and `blok_gudang` had minimal contribution.
 
-Recall tertinggi
-F1-score terbaik
-AUC tertinggi
-Stabil dalam menangani pola kompleks pada data logistik
-🏆 Kaggle Submission
+---
 
-Model Gradient Boosting menghasilkan performa submission yang sangat baik pada kompetisi Kaggle menggunakan metric sMAPE.
+## 2️⃣ Data Preprocessing
 
-🛠️ Tech Stack
-Python
-Pandas
-NumPy
-Scikit-learn
-XGBoost
-Matplotlib
-Seaborn
-📈 Key Takeaways
-Feature engineering memberikan kontribusi besar terhadap peningkatan performa model.
-Gradient Boosting lebih efektif dibanding Logistic Regression dan Random Forest pada dataset ini.
-Handling outlier dan preprocessing yang konsisten membantu meningkatkan stabilitas model.
-🚀 Future Improvements
-Hyperparameter tuning
-Ensemble learning
-Cross-validation optimization
-Feature importance analysis
-Deployment menggunakan Streamlit atau Flask
+### 🔤 Encoding
+
+Applied **Label Encoding** for categorical features:
+
+* `blok_gudang`
+* `mode_pengiriman`
+* `kepentingan_produk`
+* `jenis_kelamin`
+
+### 🩹 Handling Missing Values
+
+* Median imputation for numerical features
+* Mode imputation for categorical features
+
+### 📉 Outlier Handling
+
+Applied:
+
+* `log1p transformation`
+* `IQR-based capping`
+
+### 📏 Feature Scaling
+
+Used:
+
+* `StandardScaler`
+
+---
+
+# 🛠️ Feature Engineering
+
+Created several engineered features to improve model performance.
+
+| Feature                     | Description                        |
+| --------------------------- | ---------------------------------- |
+| `harga_setelah_diskon`      | Final product price after discount |
+| `berat_per_diskon`          | Weight-to-discount ratio           |
+| `produk_ringan`             | Lightweight product indicator      |
+| `diskon_tinggi`             | High discount indicator            |
+| `skor_pelanggan`            | Customer satisfaction score        |
+| `high_value_order`          | High-value order indicator         |
+| `is_frequent_buyer`         | Loyal customer indicator           |
+| `produk_penting_dan_ringan` | Important & lightweight product    |
+| `customer_loyalty`          | Customer loyalty score             |
+
+---
+
+# 🤖 Models Used
+
+The following machine learning models were evaluated:
+
+* Logistic Regression
+* Random Forest
+* XGBoost
+* Gradient Boosting
+
+---
+
+# 📊 Model Performance
+
+## 🥇 Best Model: Gradient Boosting
+
+| Metric    | Score  |
+| --------- | ------ |
+| Accuracy  | 66.78% |
+| Precision | 70.11% |
+| Recall    | 90.09% |
+| F1-Score  | 78.85% |
+| AUC Score | 72.71% |
+
+### ✅ Why Gradient Boosting?
+
+Gradient Boosting achieved:
+
+* Highest Recall
+* Best F1-Score
+* Highest AUC Score
+* Better capability in capturing complex logistics patterns
+
+---
+
+# 🏆 Kaggle Submission
+
+The final Gradient Boosting model achieved a strong Kaggle submission score using the **sMAPE** evaluation metric.
+
+---
+
+# 💻 Tech Stack
+
+* Python
+* Pandas
+* NumPy
+* Scikit-learn
+* XGBoost
+* Matplotlib
+* Seaborn
+
+---
+
+# 📈 Key Takeaways
+
+* Feature engineering significantly improved model performance.
+* Gradient Boosting outperformed other baseline models.
+* Proper preprocessing and outlier handling improved model stability.
+
+---
+
+# 🚀 Future Improvements
+
+* Hyperparameter tuning
+* Ensemble learning
+* Cross-validation optimization
+* Model deployment with Streamlit
+* Advanced feature importance analysis
+
+---
+
+# 📬 Contact
+
+* GitHub: https://github.com/yourusername
+* LinkedIn: https://linkedin.com/in/yourusername
